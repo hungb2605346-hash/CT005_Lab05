@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ứng dụng công nghệ số trong học tập</title>
+  <style>
+    :root {
+      --primary: #1d4ed8;
+      --primary-soft: #dbeafe;
+      --accent: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --dark: #111827;
+      --text: #374151;
+      --muted: #6b7280;
+      --bg: #f5f7ff;
+      --card: #ffffff;
+      --shadow: 0 12px 30px rgba(17, 24, 39, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(180deg, #eef4ff 0%, #f9fafb 100%);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px 50px;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 100%);
+      color: white;
+      padding: 50px 30px;
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 28px;
+      text-align: center;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+
+    .header p {
+      margin: 14px auto 0;
+      max-width: 720px;
+      font-size: 1.05rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .intro {
+      background: var(--card);
+      border-radius: 22px;
+      padding: 28px 30px;
+      box-shadow: var(--shadow);
+      margin-bottom: 28px;
+    }
+
+    .intro h2 {
+      margin: 0 0 12px;
+      color: var(--dark);
+      font-size: clamp(1.6rem, 2vw, 2.2rem);
+    }
+
+    .intro p {
+      margin: 0;
+      font-size: 1.05rem;
+      color: var(--text);
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      margin-bottom: 28px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 22px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin: 0 0 18px;
+      font-size: 1.5rem;
+      color: var(--dark);
+    }
+
+    .benefits-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 10px;
+    }
+
+    .benefit {
+      background: linear-gradient(180deg, #f8fbff 0%, #eef5ff 100%);
+      border: 1px solid #dfeafc;
+      border-radius: 16px;
+      padding: 18px 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .benefit::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+    }
+
+    .icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .benefit h4 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+      color: var(--dark);
+    }
+
+    .benefit p {
+      margin: 0;
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+
+    .infographic-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 320px;
+      background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+      border-radius: 22px;
+      border: 1px solid #dfeafc;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .donut {
+      position: relative;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: conic-gradient(
+        var(--primary) 0 30%,
+        var(--accent) 30% 58%,
+        var(--warning) 58% 80%,
+        var(--danger) 80% 100%
+      );
+      box-shadow: 0 10px 22px rgba(29, 78, 216, 0.15);
+    }
+
+    .donut::before {
+      content: "";
+      position: absolute;
+      inset: 28px;
+      background: white;
+      border-radius: 50%;
+      box-shadow: inset 0 0 0 1px #e5e7eb;
+    }
+
+    .donut-center {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 2rem;
+      color: var(--dark);
+      z-index: 1;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+      justify-content: center;
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      color: var(--text);
+      background: white;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .video-card {
+      background: var(--card);
+      border-radius: 22px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      margin-top: 10px;
+    }
+
+    .video-card h3 {
+      margin: 0 0 16px;
+      font-size: 1.7rem;
+      color: var(--dark);
+    }
+
+    .video-wrap {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+
+    .video-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .footer {
+      margin-top: 28px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+      padding-top: 18px;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    @media (max-width: 768px) {
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .benefits-list {
+        grid-template-columns: 1fr;
+      }
+
+      .header {
+        padding: 36px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>Ứng dụng công nghệ số trong học tập</h1>
+      <p>
+        Công nghệ số đang thay đổi cách học, cách tiếp cận tri thức và cách tương tác
+        giữa người học, giảng viên và cộng đồng học tập.
+      </p>
+    </header>
+
+    <section class="intro">
+      <h2>Vì sao công nghệ số quan trọng trong giáo dục?</h2>
+      <p>
+        Công nghệ số giúp học sinh, sinh viên tiếp cận tài liệu nhanh hơn, học tập linh hoạt,
+        cá nhân hóa quá trình học và nâng cao khả năng hợp tác qua các nền tảng trực tuyến.
+        Nhờ đó, việc học tập trở nên hiệu quả, chủ động và gần gũi hơn với thế giới số.
+      </p>
+    </section>
+
+    <div class="content-grid">
+      <section class="card">
+        <h3>Infographic: Lợi ích của công nghệ số trong học tập</h3>
+<img src="Lab05_Ex2.1.png" alt="Infographic về lợi ích của công nghệ số trong học tập">
+      </section>
+    </div>
+
+    <section class="video-card">
+      <h3>Video giới thiệu</h3>
+      <div class="video-wrap">
+        <iframe
+          src="https://www.youtube.com/embed/3072rUqbjPk"
+          title="Video về công nghệ trong giáo dục"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </section>
+
+    <div class="footer">
+      Nguồn tham khảo: Tài liệu giáo dục và nghiên cứu về ứng dụng công nghệ số trong học tập. <br />
+      Bản quyền thuộc về nhóm thực hiện / nguồn tổng hợp.
+    </div>
+  </div>
+</body>
+</html>
